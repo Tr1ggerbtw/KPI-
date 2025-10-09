@@ -64,22 +64,22 @@ ENTITY "Progress" as Progress {
 }
 
 ENTITY "UnlockedAchievement" as UnlockedAchievement {
-  PK FK library_id : UUID
-  PK FK game_id : UUID
-  PK FK achievement_id : UUID
+  FK library_id : UUID
+  FK game_id : UUID
+  FK achievement_id : UUID
   --
   date_complete : datetime
 }
 
 ENTITY "GameCategory" as GameCategory {
-  PK FK game_id : UUID
-  PK FK category_id : UUID
+  FK game_id : UUID
+  FK category_id : UUID
 }
 
 ENTITY "LibraryCollection" as LibraryCollection {
-  PK FK collection_id : UUID
-  PK FK library_id : UUID
-  PK FK game_id : UUID
+  FK collection_id : UUID
+  FK library_id : UUID
+  FK game_id : UUID
 }
 
 User "1" ||--|| "1" Information : "has info"
