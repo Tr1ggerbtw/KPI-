@@ -1,0 +1,97 @@
+﻿@startuml
+
+!define ENTITY entity
+!define PK <b><color:red>
+!define FK <color:blue>
+
+ENTITY "User" as User {
+  PK user_id : UUID
+  --
+  username : string
+  password : string
+}
+
+ENTITY "Information" as Information {
+  PK FK user_id : UUID
+  --
+  phonenumber : string
+  email : string
+  birthday : date
+}
+
+ENTITY "Library" as Library {
+  PK library_id : UUID
+  --
+  FK user_id : UUID
+}
+
+ENTITY "Game" as Game {
+  PK game_id : UUID
+  --
+  price : dobule
+  description : string
+  release_date : date
+}
+
+ENTITY "Collection" as Collection {
+  PK collection_id : UUID
+  --
+  FK library_id : UUID
+  name : string
+}
+
+ENTITY "Category" as Category {
+  PK category_id : UUID
+  --
+  name : string
+  description : string
+  age_min : int
+}
+
+ENTITY "Achievement" as Achievement {
+  PK achievement_id : UUID
+  --
+  FK game_id : UUID
+  name : string
+  goal : string
+}
+
+ENTITY "Progress" as Progress {
+  PK FK library_id : UUID
+  PK FK game_id : UUID
+  --
+  hours_played : int
+}
+
+ENTITY "UnlockedAchievement" as UnlockedAchievement {
+  PK FK library_id : UUID
+  PK FK game_id : UUID
+  PK FK achievement_id : UUID
+  --
+  date_complete : datetime
+}
+
+ENTITY "GameCategory" as GameCategory {
+  PK FK game_id : UUID
+  PK FK category_id : UUID
+}
+
+ENTITY "LibraryCollection" as LibraryCollection {
+  PK FK collection_id : UUID
+  PK FK library_id : UUID
+  PK FK game_id : UUID
+}
+
+User "1" ||--|| "1" Information : "has info"
+User "1" ||--|| "1" Library : "has"
+Library "1" ||--o{ "0..*" Collection : "contains"
+Library "1" ||--|{ "1..*" Progress : "has"
+Game "1" ||--|{ "1..*" Progress : "played in"
+Game "1" ||--|{ "1..*" Achievement : "has"
+Category "1" ||--|{ "1..*" GameCategory : "includes"
+Game "1" ||--|{ "1..*" GameCategory : "belongs to"
+Achievement "1" ||--|{ "1..*" UnlockedAchievement : "can be unlocked"
+Progress "1" ||--o{ "0..*" UnlockedAchievement : "unlocks"
+Collection "1" ||--|{ "1..*" LibraryCollection : "includes"
+Progress "1" ||--o{ "0..*" LibraryCollection : "has games"
+@enduml
