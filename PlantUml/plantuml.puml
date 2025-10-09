@@ -28,7 +28,7 @@ ENTITY "Library" as Library {
 ENTITY "Game" as Game {
   PK game_id : UUID
   --
-  price : dobule
+  price : double
   description : string
   release_date : date
 }
