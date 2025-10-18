@@ -12,7 +12,7 @@
 
 | Use Case (UC) | `FR-1` | `FR-2` | `FR-3` | `FR-4` | `FR-5` | `FR-6` | `FR-7` |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `UC1: WorkShift` | X | | | | | X | |
+| `UC1: WorkShift` | X | | | | | | |
 | `UC2: GiveAdvices` | | | | | | | X |
 | `UC3: MonitorCameras` | X | | | | | | |
 | `UC4: SealVents` | X | | | | | | |
