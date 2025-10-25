@@ -1,0 +1,80 @@
+﻿@startuml
+left to right direction
+skinparam usecase {
+  BackgroundColor #FDFDFD
+  BorderColor #444
+  ArrowColor #555
+}
+
+actor Guard as g
+actor PhoneGuy as p
+actor Springtrap as s
+actor Phantoms as ph
+
+usecase "Work the night shift" as work
+usecase "Give advices" as adv
+adv --> work
+
+g --> work
+p --> adv
+
+usecase "Restore Power" as restore
+usecase "Go to the generator room" as goGen
+usecase "Manually restart the generator" as manualRestart
+
+work --> restore
+restore --> goGen
+goGen --> manualRestart
+
+usecase "Open maintenance panel" as panel
+usecase "Restart audio system" as restartAudio
+usecase "Restart all systems" as restartAll
+usecase "Repair vents" as repairVents
+usecase "Restart video system" as restartVideo
+
+work --> panel
+panel --> restartAudio 
+panel --> restartAll 
+panel --> repairVents 
+panel --> restartVideo 
+usecase "Monitor cameras" as monitor
+usecase "Use audio to lure" as audioLure
+usecase "Avoid looking at Phantoms" as avoidLook
+usecase "Seal vents" as seal
+
+work --> monitor
+monitor --> audioLure
+monitor --> avoidLook
+monitor --> seal
+
+usecase "Avoid of attack" as avoidAttack
+usecase "Distract the guard" as distract
+usecase "Sabotage one of the system" as sabotage
+
+work --> avoidAttack
+ph --> distract
+distract --> sabotage
+sabotage ..> panel
+
+usecase "Hunt the guard" as hunt
+usecase "Attack guard" as attack
+usecase "Move between locations" as move
+usecase "Create audio distractions" as createAudio
+usecase "Hide in the shadows" as hide
+usecase "Disable Power Generator" as disablePower
+usecase "Use vents" as useVents
+usecase "React to audio lure" as reactAudio
+
+s --> hunt
+hunt --> attack
+attack ..> avoidAttack
+hunt --> move
+move --> createAudio
+move --> hide
+move --> disablePower
+disablePower ..> manualRestart
+move --> useVents
+useVents ..> seal
+move --> reactAudio
+reactAudio ..> audioLure
+@enduml
