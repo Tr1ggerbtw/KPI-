@@ -26,7 +26,7 @@
 - includes: a game over state if the Springtrap attacks the player.
 - includes: a win state if the player survives until the end of the shift.
 ### The system shall provide the player with guidance and narrative information
-- includes: playing receiving phone call from "PhoneGuy" at the start of shift
+- use: playing receiving phone call from "PhoneGuy" at the start of shift
 
 ## Non-Functional Requirements
 ### The system shall maintain stable performance
@@ -40,10 +40,10 @@
    
 - The game must run at a consistent frame rate (minimum 24 FPS) to ensure a smooth player experience.
 - The game must support modern architecture and be updated if needed.
-- The game must run at a consistent frame rate (minimum 24 FPS) to ensure a smooth player experience.
 ### The system shall have an good user interface
 - Controls for switching cameras, using audio, and accessing the maintenance panel must be clear and responsive, should not exceed 1 second.
 - The interface shall support adjustable font sizes or color schemes, or different type of things for users with visual impairments
+- The system must support the main languages: English, Ukrainian
 ### The system's AI
 - Should work correctly, increasing difficulty relative to game timeэ
 - Player-Relative Scaling: The AI's difficulty shall also dynamically adjust based on player performance
