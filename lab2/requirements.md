@@ -30,9 +30,24 @@
 
 ## Non-Functional Requirements
 ### The system shall maintain stable performance
+#### Minimum system requirements:
+- OS: Windows XP, Vista, Windows 7
+-   Processor: 2 GHz Intel Pentium 4 or AMD Athlon or equivalent
+-   Memory: 1 GB RAM
+-    Graphics: 1 GB graphics card
+-    DirectX: Version 9.0
+-    Storage: 500 MB available space
+   
+- The game must run at a consistent frame rate (minimum 24 FPS) to ensure a smooth player experience.
 - The game must support modern architecture and be updated if needed.
 - The game must run at a consistent frame rate (minimum 24 FPS) to ensure a smooth player experience.
-### The system shall have an intuitive user interface
+### The system shall have an good user interface
 - Controls for switching cameras, using audio, and accessing the maintenance panel must be clear and responsive, should not exceed 1 second.
+- The interface shall support adjustable font sizes or color schemes, or different type of things for users with visual impairments
 ### The system's AI
-- Should work correctly, increasing difficulty relative to game time
+- Should work correctly, increasing difficulty relative to game timeэ
+- Player-Relative Scaling: The AI's difficulty shall also dynamically adjust based on player performance
+### Security
+- The system must be protected against common vulnerabilities
+- The system shall implement anti-cheat measures to detect and prevent unauthorized modifications to the game state.
+- Data such as in-game saves must be securely stored to avoid file corruption.
