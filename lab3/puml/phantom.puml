@@ -1,0 +1,61 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+autonumber
+
+actor "Guard" as Player
+participant ":Maintenance Panel" as System
+actor "Phantoms" as Enemy
+
+activate Enemy
+Enemy -> Player: Distract the guard()
+
+Enemy -> System: Sabotage one of the system()
+deactivate Enemy
+
+activate System
+System --> Player: Alert: System Error
+deactivate System
+
+loop Until Systems Restored
+
+    Player -> System: Open maintenance panel()
+    activate System
+    System -->> Player: Show System Status
+    deactivate System
+
+    alt Video Error
+        Player -> System: Restart video system()
+        activate System
+        System -> System: Rebooting...
+        System -->> Player: Video Online
+        deactivate System
+        
+    else Audio Error
+        Player -> System: Restart audio system()
+        activate System
+        System -> System: Rebooting...
+        System -->> Player: Audio Online
+        deactivate System
+        
+    else Critical Failure (Restart All)
+        Player -> System: Restart all systems()
+        activate System
+        System -> System: Full Reboot Sequence...
+        
+        opt Risk of Approach
+            activate Enemy
+            Enemy -> Player: Move Closer (Footsteps)
+            deactivate Enemy
+        end
+
+        System -->> Player: All Systems Online
+        deactivate System
+    end
+end
+
+Player -> System: Close Maintenance Panel()
+activate System
+System -->> Player: Display Office View (Room)
+deactivate System
+@enduml
