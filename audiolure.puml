@@ -1,0 +1,66 @@
+@startuml
+title Audio Lure Sequence Diagram
+autonumber
+skinparam responseMessageBelowArrow true
+
+actor "Guard" as User
+participant ":Video System" as Video
+participant ":Maintenance Panel" as Panel
+participant ":Audio System" as Audio
+actor "Springtrap" as Trap
+
+== 1. Initialization & Video Check ==
+
+User -> Video: Turn on tablet
+activate Video
+
+Video -> Panel: Check Video Workability
+activate Panel
+
+alt Video System Error
+    Panel --> Video: Status: ERROR
+    Video --> User: Notify about video error
+else Video System OK
+    Panel --> Video: Status: Success
+    deactivate Panel
+    Video --> User: Display default room
+end
+    == 2. Scanning (Loop) ==
+    
+    loop Find Springtrap
+        User -> Video: Switch Camera Room
+        Video --> User: Update feed
+    end
+
+    == 3. Audio Lure Action ==
+
+    User -> Video: Use audio lure on room
+    
+    Video -> Panel: Check Audio Status
+    activate Panel
+
+    alt Audio System Error
+        Panel --> Video: Status: ERROR
+        Video --> User: Notify about audio error
+        note left: Guard must reboot Audio
+    else Audio System OK
+        Panel --> Video: Status: Success
+        deactivate Panel
+
+        Video -> Audio: Play sound command
+        activate Audio
+        Audio -> Audio: Emit sound (Balloon Boy)
+        Audio -> Trap: Hear sound event
+        deactivate Audio
+    end
+        == 4. AI Reaction ==
+        
+        alt Lure Successful
+            Trap -> Trap: Move in direction of sound
+            Trap -> Video: Update Location (Static appears)
+        else Lure Ignored
+            Trap -> Trap: Ignore sound
+        end
+
+deactivate Video
+@enduml
