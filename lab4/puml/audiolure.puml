@@ -1,0 +1,62 @@
+@startuml
+title Audio Lure
+
+|Guard|
+start
+:Turn on tablet;
+
+|System|
+repeat 
+    :Try to use video system;
+    if (Error?) then (Error)
+        :Notify guard>
+        |Guard|
+        :Receive notification;
+        :Try to fix video;
+        |System|
+    else (Success)
+        break
+    endif
+repeat while ()
+
+fork
+    :Show default video feed;
+fork again
+    :Notify about workability of video;
+end fork
+
+|Guard|
+while (Is desired room?) is (no)
+    :Switch room;
+endwhile (yes)
+
+|System|
+repeat
+    :Try to use audio vlure;
+    if (Error?) then (Error)
+        :Notify guard>
+        |Guard|
+        :Receive notification<
+        :Try to fix audio system;
+        |System|
+    else (Success)
+        break
+    endif
+repeat while ()
+
+fork
+    :Log audio lure;
+    detach;
+fork again
+    |Springtrap|
+    :Provide sound;
+    if (Lure succesful?) then (Yes)
+        :Move towards the sound;
+    else (No)
+        :Ignore sound;
+    endif
+    :Update video feed;
+    stop
+end fork
+
+@enduml
